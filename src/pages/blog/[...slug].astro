@@ -1,0 +1,38 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import AffiliateCTA from '../../components/AffiliateCTA.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<PostLayout
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  category={post.data.category}
+  readingTime={post.data.readingTime}
+  author={post.data.author}
+>
+  <Content />
+  <AffiliateCTA />
+  <div class="container-prose">
+    <Newsletter />
+  </div>
+</PostLayout>
