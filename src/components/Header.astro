@@ -1,0 +1,20 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo">
+      <span class="site-logo-mark">NT</span>
+      <span>Northville Tech</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/" aria-current={isActive('/') && pathname === '/' ? 'page' : undefined}>Home</a>
+      <a href="/blog" aria-current={isActive('/blog') ? 'page' : undefined}>Blog</a>
+      <a href="/about" aria-current={isActive('/about') ? 'page' : undefined}>About</a>
+      <a href="https://northvilletech.co/ifly" class="btn btn-primary" rel="sponsored nofollow">Try iFly →</a>
+    </nav>
+  </div>
+</header>
