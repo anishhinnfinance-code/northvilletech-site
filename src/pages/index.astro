@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featured = posts.filter(p => p.data.featured).slice(0, 3);
+const recent = posts.slice(0, 5);
+
+const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Northville Tech — Honest Reviews of Adventure Experiences"
+  description="Real reviews, real gift guides, and real answers about indoor skydiving, bucket-list experiences, and adventures worth your money."
+>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <h1>The stuff you keep meaning to try.</h1>
+        <p class="lede">
+          Honest reviews of indoor skydiving, adventure experiences, and gifts people actually want. No filler, no hype, no "ultimate guides" that weren't.
+        </p>
+        <div class="hero-ctas">
+          <a href="/blog" class="btn btn-primary">Read the reviews</a>
+          <a href="#recent" class="btn btn-outline" style="color:#fff;border-color:#fff;">Latest posts ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="margin-top: 3rem;">
+    <div class="section-heading">
+      <h2>Start here</h2>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="/blog/ifly-review">
+        <span class="card-tag">Flagship Review</span>
+        <h3>iFly Indoor Skydiving: The Honest Review</h3>
+        <p>What $70 actually gets you. Who it's for. Who it isn't. Written after flying twice and reading every forum thread so you don't have to.</p>
+      </a>
+      <a class="card" href="/blog/is-indoor-skydiving-worth-it">
+        <span class="card-tag">Decision Guide</span>
+        <h3>Is Indoor Skydiving Actually Worth It?</h3>
+        <p>A former skeptic's take. The three types of people who should try it, the two who shouldn't, and the one question that matters most.</p>
+      </a>
+      <a class="card" href="/blog/ifly-vs-real-skydiving">
+        <span class="card-tag">Comparison</span>
+        <h3>iFly vs Real Skydiving: Which First?</h3>
+        <p>Adrenaline, cost, learning curve, and safety — compared side by side. Not what you'd expect.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="container" id="recent">
+    <div class="section-heading">
+      <h2>Latest posts</h2>
+      <a href="/blog">See all →</a>
+    </div>
+    <ul class="post-list">
+      {recent.map(post => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <div class="post-meta">
+              <span>{post.data.category}</span>
+              <span>•</span>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+            </div>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="container">
+    <Newsletter />
+  </div>
+</BaseLayout>
