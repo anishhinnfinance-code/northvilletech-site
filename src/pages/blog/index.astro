@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Group by category
+const categories = ['Review', 'Comparison', 'Guide', 'Gift Guide', 'FAQ', 'Local'];
+---
+
+<BaseLayout
+  title="Blog — Northville Tech"
+  description="Reviews, comparisons, and guides for indoor skydiving and adventure experiences."
+>
+  <div class="container" style="margin-top: 3rem;">
+    <h1>All posts</h1>
+    <p class="small">{posts.length} {posts.length === 1 ? 'post' : 'posts'} and counting.</p>
+    <ul class="post-list" style="margin-top: 2rem;">
+      {posts.map(post => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <div class="post-meta">
+              <span>{post.data.category}</span>
+              <span>•</span>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              {post.data.readingTime && <><span>•</span><span>{post.data.readingTime}</span></>}
+            </div>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
