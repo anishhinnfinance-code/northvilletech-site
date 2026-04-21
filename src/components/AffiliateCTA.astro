@@ -1,0 +1,21 @@
+---
+interface Props {
+  heading?: string;
+  body?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const {
+  heading = 'Ready to try indoor skydiving yourself?',
+  body = 'iFly has locations across the US. Book a first-time flight package or grab a gift card — it takes 90 seconds.',
+  buttonText = 'Book at iFly →',
+  buttonHref = 'https://northvilletech.co/ifly',
+} = Astro.props;
+---
+
+<aside class="affiliate-cta">
+  <h3>{heading}</h3>
+  <p>{body}</p>
+  <a href={buttonHref} class="btn btn-primary" rel="sponsored nofollow">{buttonText}</a>
+</aside>
