@@ -133,7 +133,7 @@ Once you're approved, here's what to do:
 That's it. You're officially a Dasher.
 
 <div style="text-align:center;margin:32px 0;">
-  <a href="http://northvilletech.co/dasher" style="display:inline-block;background:#FF3008;color:#fff;padding:16px 36px;border-radius:8px;font-weight:700;font-size:1.1rem;text-decoration:none;letter-spacing:0.01em;">🚗 Sign Up and Get Approved This Week →</a>
+  <a href="http://northvilletech.co/dasher" style="display:inline-block;background:#FF3008;color:#fff;padding:16px 36px;border-radius:8px;font-weight:700;font-size:1.1rem;text-decoration:none;letter-spacing:0.01em;">🚗 Sign Up and Get Started This Week →</a>
 </div>
 
 ---
