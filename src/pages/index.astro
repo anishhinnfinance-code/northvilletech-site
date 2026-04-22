@@ -6,26 +6,27 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('posts'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const featured = posts.filter(p => p.data.featured).slice(0, 3);
 const recent = posts.slice(0, 5);
 
-const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 
 <BaseLayout
-  title="Northville Tech — Honest Reviews of Adventure Experiences"
-  description="Real reviews, real gift guides, and real answers about indoor skydiving, bucket-list experiences, and adventures worth your money."
+  title="Northville Tech — Guides for DoorDash Drivers & Gig Workers"
+  description="Practical guides for DoorDash drivers and gig workers. Mileage tracking, tax tips, earnings strategies, and honest reviews — no fluff."
 >
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
-        <h1>The stuff you keep meaning to try.</h1>
+        <h1>Built for the gig life.</h1>
         <p class="lede">
-          Honest reviews of indoor skydiving, adventure experiences, and gifts people actually want. No filler, no hype, no "ultimate guides" that weren't.
+          Real guides for DoorDash drivers and gig workers — from tracking mileage for taxes to
+          maximizing your earnings. No fluff, no generic advice, no "ultimate guides" that weren't.
         </p>
         <div class="hero-ctas">
-          <a href="/blog" class="btn btn-primary">Read the reviews</a>
-          <a href="#recent" class="btn btn-outline" style="color:#fff;border-color:#fff;">Latest posts ↓</a>
+          <a href="http://northvilletech.co/dasher" class="btn btn-primary" rel="sponsored nofollow">Start Dashing →</a>
+          <a href="#recent" class="btn btn-outline" style="color:#fff;border-color:#fff;">Read the guides ↓</a>
         </div>
       </div>
     </div>
@@ -36,20 +37,20 @@ const formatDate = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric',
       <h2>Start here</h2>
     </div>
     <div class="card-grid">
+      <a class="card" href="/blog/how-to-track-doordash-mileage-for-taxes">
+        <span class="card-tag">Tax Guide</span>
+        <h3>How to Track Your DoorDash Mileage for Taxes</h3>
+        <p>The IRS lets you deduct 67 cents per mile — but only if you tracked them. Here's the exact method that saves DoorDash drivers the most money at tax time.</p>
+      </a>
+      <a class="card" href="http://northvilletech.co/dasher" rel="sponsored nofollow">
+        <span class="card-tag">Get Started</span>
+        <h3>Become a DoorDash Driver in 2026</h3>
+        <p>Set your own hours, get paid weekly, and earn on your schedule. Sign up through our link and start your first delivery today.</p>
+      </a>
       <a class="card" href="/blog/ifly-review">
-        <span class="card-tag">Flagship Review</span>
+        <span class="card-tag">Popular Review</span>
         <h3>iFly Indoor Skydiving: The Honest Review</h3>
         <p>What $70 actually gets you. Who it's for. Who it isn't. Written after flying twice and reading every forum thread so you don't have to.</p>
-      </a>
-      <a class="card" href="/blog/is-indoor-skydiving-worth-it">
-        <span class="card-tag">Decision Guide</span>
-        <h3>Is Indoor Skydiving Actually Worth It?</h3>
-        <p>A former skeptic's take. The three types of people who should try it, the two who shouldn't, and the one question that matters most.</p>
-      </a>
-      <a class="card" href="/blog/ifly-vs-real-skydiving">
-        <span class="card-tag">Comparison</span>
-        <h3>iFly vs Real Skydiving: Which First?</h3>
-        <p>Adrenaline, cost, learning curve, and safety — compared side by side. Not what you'd expect.</p>
       </a>
     </div>
   </section>
