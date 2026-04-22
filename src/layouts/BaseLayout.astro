@@ -36,6 +36,15 @@ const { title, description, image, article, pubDate, updatedDate, author } = Ast
       updatedDate={updatedDate}
       author={author}
     />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNDNELHX58"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CNDNELHX58');
+    </script>
   </head>
   <body>
     <Header />
