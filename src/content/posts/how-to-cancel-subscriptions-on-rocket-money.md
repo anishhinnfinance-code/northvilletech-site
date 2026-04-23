@@ -2,7 +2,7 @@
 title: "How to Cancel Subscriptions on Rocket Money (2026 Guide)"
 description: "A step-by-step guide to canceling unwanted subscriptions using Rocket Money — including one-tap cancellations and the concierge service for harder cases."
 pubDate: 2026-04-22
-category: "How-To"
+category: "Guide"
 readingTime: "7 min read"
 ---
 
